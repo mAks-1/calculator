@@ -1,53 +1,12 @@
 let value, operate, length;
 
-document.querySelector("#zero").addEventListener("click", zero);
-function zero() {
-    document.querySelector(".screen").textContent += '0';
-}
-
-document.querySelector("#one").addEventListener("click", one);
-function one() {
-    document.querySelector(".screen").innerHTML += '1';
-}
-
-document.querySelector("#two").addEventListener("click", two);
-function two() {
-    document.querySelector(".screen").innerHTML += '2';
-}
-
-document.querySelector("#three").addEventListener("click", three);
-function three() {
-    document.querySelector(".screen").innerHTML += '3';
-}
-
-document.querySelector("#four").addEventListener("click", four);
-function four() {
-    document.querySelector(".screen").innerHTML += '4';
-}
-
-document.querySelector("#five").addEventListener("click", five);
-function five() {
-    document.querySelector(".screen").innerHTML += '5';
-}
-
-document.querySelector("#six").addEventListener("click", six);
-function six() {
-    document.querySelector(".screen").innerHTML += '6';
-}
-
-document.querySelector("#seven").addEventListener("click", seven);
-function seven() {
-    document.querySelector(".screen").innerHTML += '7';
-}
-
-document.querySelector("#eight").addEventListener("click", eight);
-function eight() {
-    document.querySelector(".screen").innerHTML += '8';
-}
-
-document.querySelector("#nine").addEventListener("click", nine);
-function nine() {
-    document.querySelector(".screen").innerHTML += '9';
+let numbers = document.querySelectorAll(".hoverNumber");
+for(let i = 0; i < numbers.length; i++){
+    let id = numbers[i].id;
+        numbers[i].addEventListener("click", id =>{
+            console.log(document.querySelector(".screen").textContent.length)
+            document.querySelector(".screen").textContent += [i] + "";
+        });
 }
 
 document.querySelector("#plus").addEventListener("click", plus);
