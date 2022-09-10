@@ -7,7 +7,7 @@
 .calculator{
     width: 24%;
     top: 5%;
-    position: fixed;
+    margin: 40px auto;
     left: 30%;
     background-color: #221c29;
     border-radius: 24px;
@@ -33,10 +33,6 @@
     border-radius: 50%;
 }
 
-/*.calculator .screen .screenHistory{*/
-/*    background-color: #fff;*/
-/*}*/
-
 .calculator .buttons{
     height: 66%;
     display: flex;
@@ -50,8 +46,8 @@
 }
 
 .calculator .btn{
-    width: 23%;
-    height: auto;
+    width: 64px;
+    height: 64px;
     color: aliceblue;
     margin-bottom: 15px;
     padding: 15px;
