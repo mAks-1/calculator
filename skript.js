@@ -1,5 +1,6 @@
 let value, operate, length;
 let screen = document.querySelector(".screen");
+let signs = document.querySelectorAll(".sign");
 
 let numbers = document.querySelectorAll(".hoverNumber");
 for(let i = 0; i < numbers.length; i++){
@@ -16,15 +17,26 @@ document.addEventListener("keydown", (e) =>{
     }
 });
 
-let signs = document.querySelectorAll(".sign");
 for(let i = 0; i < signs.length; i++){
     let sign = signs[i].textContent;
     let id2 = signs[i].id;
 
     document.addEventListener("keydown", (e) =>{
-        if(e.key == sign){
+        if(e.key == "=" && e.shiftKey){
+            value = screen.textContent;
+            operate = "+";
+            screen.textContent = "";
+        }else if(e.key == sign){
             value = screen.textContent;
             operate = signs[i].innerHTML + "";
+            screen.textContent = "";
+        }else if(e.key == "."){
+            value = screen.textContent;
+            operate = "/";
+            screen.textContent = "";
+        }else if(e.key == "8" && e.shiftKey){
+            value = screen.textContent;
+            operate = "*";
             screen.textContent = "";
         }else{
             return;
@@ -32,32 +44,13 @@ for(let i = 0; i < signs.length; i++){
     });
 };
 
-document.querySelector("#plus").addEventListener("click", plus);
-function plus() {
-    value = screen.textContent;
-    operate = '+';
-    screen.textContent = "";
-}
-
-document.querySelector("#minus").addEventListener("click", minus);
-function minus() {
-    value = screen.textContent;
-    operate = '-';
-    screen.textContent = "";
-}
-
-document.querySelector("#multiplication").addEventListener("click", multiplication);
-function multiplication() {
-    value = screen.textContent;
-    operate = '*';
-    screen.textContent = "";
-}
-
-document.querySelector("#division").addEventListener("click", division);
-function division() {
-    value = screen.textContent;
-    operate = '/';
-    screen.textContent = "";
+for(let i = 0; i < signs.length - 1; i++){
+    signs[i].addEventListener("click", () =>{
+        value = screen.textContent;
+        console.log(signs[i].textContent)
+        operate = signs[i].textContent;
+        screen.textContent = "";
+    })
 }
 
 document.querySelector("#squareRoot").addEventListener("click", squareRoot);
@@ -73,26 +66,29 @@ function remove() {
     screen.textContent = "";
 }
 
+document.addEventListener("keydown", reset);
 document.querySelector("#reset").addEventListener("click", reset);
-function reset() {
-    length = screen.textContent;
-    screen.textContent = length.substring(0, length.length - 1)
+function reset(e) {
+    if(e.key == 'Backspace' || true){
+        length = screen.textContent;
+        screen.textContent = length.substring(0, length.length - 1)
+    }
 }
 
 document.querySelector("#equals").addEventListener("click", equals);
-document.querySelector("#equals").addEventListener("keydown", equals);
+
 function equals() {
-    if (operate == "+") {
-        document.querySelector(".screen").textContent = Number(value) + Number(document.querySelector(".screen").textContent);
-    } else if (operate == "-") {
-        document.querySelector(".screen").textContent = Number(value) - Number(document.querySelector(".screen").textContent);
-    } else if (operate == "*") {
-        document.querySelector(".screen").textContent = Number(value) * Number(document.querySelector(".screen").textContent);
-    } else if (operate == "/") {
-        if (document.querySelector(".screen").textContent === "0") {
-            document.querySelector(".screen").textContent = "incorrect value";
-        } else {
-            document.querySelector(".screen").textContent = (Number(value) / Number(document.querySelector(".screen").textContent));
+        if (operate == "+") {
+            document.querySelector(".screen").textContent = Number(value) + Number(document.querySelector(".screen").textContent);
+        } else if (operate == "-") {
+            document.querySelector(".screen").textContent = Number(value) - Number(document.querySelector(".screen").textContent);
+        } else if (operate == "*") {
+            document.querySelector(".screen").textContent = Number(value) * Number(document.querySelector(".screen").textContent);
+        } else if (operate == "/") {
+            if (document.querySelector(".screen").textContent === "0") {
+                document.querySelector(".screen").textContent = "incorrect value";
+            } else {
+                document.querySelector(".screen").textContent = (Number(value) / Number(document.querySelector(".screen").textContent));
+            }
         }
-    }
 }
